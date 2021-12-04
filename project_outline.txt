@@ -1,0 +1,42 @@
+1 - Propose ideas. (Joe)
+	What should we do next in our community?
+	
+	1 "run" can be an address. 
+	A new idea would create a new address. 
+	
+	Steps
+	Ask for a text
+	Write to the Blockchain
+	Read all entries
+	
+	
+2 - Vote for the ideas. (Miguel). Tokens
+
+	Use of Tokens and Limited Time
+	
+	Park
+	Airport
+	Freeway
+	
+	Steps 
+	1 - Issue tokens to the participants
+	2 - Allow participants to vote on previous ideas
+	
+	
+3 - Tender Process: 
+	Have an Auction to sell the "Service". (Dave)
+
+	Ok. We will do the airport with these specs. Who wants to do it?	
+	Bidding and the lowest price wins.
+	
+	Steps 
+	1 - Create a contract with the specifications 
+	2 - Allow people to read the specifications and bid on it
+	3 - This goes for a limited time
+	4 - Lowest Price gets the contract
+
+4 - Store the agreement (Together). CryptoRighs (Signature on that agreement)
+	Talk to the winner and make an agreement based on the terms and conditions
+	
+	Steps
+	1 - Writing the signed contract into the Blockchain
