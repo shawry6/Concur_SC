@@ -4,6 +4,8 @@
 # Concur_SC
 Concur is a Smart Contract on the Ethereum Blockchain. It enables users to agree on anything imaginable. It is secured by it's signaturies on the Ethereum Blockchain...where it lives immutably forevermore. 
 
+Checkout our gSlides presentation [here](https://docs.google.com/presentation/d/1rih1TbxnlrEZVL_i3aZtN38MSt9jj_9ODyq0QfhbHfI/edit?usp=sharing). You will need to request permission from the owners via this link to see it.
+
 ---
 
 ## Technologies
