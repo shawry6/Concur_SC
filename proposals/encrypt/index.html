@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<!-- code by webdevtrick ( https://webdevtrick.com ) -->
+<!-- code by webdevtrick ( https://webdevtrick.com ) 
+Modified by Joe Colubriale 9/12/2021
+-->
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,15 +16,15 @@
             <input class="f15pt" type="password" id="passcode" placeholder="password" />
         </div>
         <div class="content voilet2">
-            <span>Put Or Type Text Here</span>
+            <span>Enter Text to be Encrypted of Decrypted</span>
             <textarea id="originalContent"></textarea>
         </div>
         <div class="content voilet0">
-            <span>Encrypted Form</span>
+            <span>Encrypted Form Output</span>
             <textarea id="encryptedContent" readonly></textarea>
         </div>
         <div class="content voilet0">
-            <span>Decrypted Form</span>
+            <span>Decrypted Form Output</span>
             <textarea id="decryptedContent" readonly></textarea>
         </div>
         <button class="encrypt" onclick="webdevencrypt.setEncrypt('originalContent','encryptedContent','passcode')">Encrypt</button>
