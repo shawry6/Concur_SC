@@ -8,7 +8,7 @@
 
 2 - Vote on Proposals
 
-3 - Participate in Tender Process
+### [3 - Participate in Tender Process](https://shawry6.github.io/TenderMarket/frontend/index.html#)
 
 4 - Vote on best 3 Tenders
 
