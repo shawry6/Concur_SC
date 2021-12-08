@@ -1,3 +1,6 @@
 [submodule "TenderMarket"]
 	path = TenderMarket
 	url = https://github.com/shawry6/TenderMarket.git
+[submodule "proj3test"]
+	path = proj3test
+	url = https://github.com/colubriale/proj3test.git
