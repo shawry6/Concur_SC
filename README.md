@@ -1,8 +1,4 @@
-# The DJM Blockchain Apps
-
-## David, Joe and Miguel's Blockchain Apps
-
-### Select an App
+# Select an App
 
 ### [1 - Put Forward a Proposal](proposals/index.html) 
 
