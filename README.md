@@ -10,8 +10,6 @@
 
 ### [5 - Finalise Contract](contracts/index.html)
 
-### [U - Utilities](encrypt/index.html)
-
 
 
 
