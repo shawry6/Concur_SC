@@ -1,6 +1,6 @@
 # Select an App
 
-### [1 - Put Forward a Proposal](proposals/index.html) 
+### [1 - Put Forward a Proposal](proposals/proposals/index.html) 
 
 ### [2 - Vote on Proposals](voting-system/index.html)
 
@@ -8,7 +8,7 @@
 
 ### [4 - Vote on best 3 Tenders](voting-system/index.html)
 
-### [5 - Finalise Contract](contracts/index.html)
+### [5 - Finalise Contract](proposals/contracts/index.html)
 
 
 
