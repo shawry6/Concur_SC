@@ -12,11 +12,8 @@
 
   <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/starter-template/">
   <link href="./css/bootstrap.min.css" rel="stylesheet">
-  <!-- <link href="./css/starter-template.css" rel="stylesheet"> -->
-  <!-- <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script> -->
   <script src="https://cdn.ethers.io/scripts/ethers-v4.min.js" charset="UTF-8" type="text/javascript"></script>
   <script src="https://cdn.plot.ly/plotly-2.6.3.min.js"></script>
-  <!-- <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> -->
 
 </head>
 
@@ -25,13 +22,14 @@
 
         window.onload = function(){
             getvotes();
+			initInterface();
         }
 		let vote0count;
 		let vote1count;
 		let vote2count;
 
-        function getvotes(){
-            abi = [
+		const contractAddress = "0xf2309528686E1f48b549f2cb4E96C861A23e3404";
+		const abi = [
 	{
 		"inputs": [
 			{
@@ -180,190 +178,79 @@
 		"type": "function"
 	}
 ]
-            
-            // const provider = new ethers.providers.Web3Provider(web3.currentProvider);
+
+		function initInterface(){
+			disableVoting();
+		}
+
+		function disableVoting(){
+			document.getElementById("ButtonVote").disabled = true; 
+			document.getElementById("ButtonDelegate").disabled = true; 
+		}
+
+		function enableVoting(){
+			document.getElementById("ButtonVote").disabled = false; 
+			document.getElementById("ButtonDelegate").disabled = false; 
+		}
+
+        function getvotes(){
             const provider = new ethers.providers.Web3Provider(window.ethereum)
 
-            contract = new ethers.Contract("0xf2309528686E1f48b549f2cb4E96C861A23e3404", abi, provider);
+            contract = new ethers.Contract(contractAddress, abi, provider);
             
             var proposal0 = contract.proposals(0);
             proposal0.then(function (result){
                 document.getElementById("proposal0name").innerHTML = result[0];
-                document.getElementById("vote0count").innerHTML = result[1];
+                
 				vote0count = result[1];
             })
 
-            var proposal0 = contract.proposals(1);
-            proposal0.then(function (result){
+            var proposal1 = contract.proposals(1);
+            proposal1.then(function (result){
                 document.getElementById("proposal1name").innerHTML = result[0];
-                document.getElementById("vote1count").innerHTML = result[1];
 				vote1count = result[1];
             })
 
-            var proposal0 = contract.proposals(2);
-            proposal0.then(function (result){
+            var proposal2 = contract.proposals(2);
+            proposal2.then(function (result){
                 document.getElementById("proposal2name").innerHTML = result[0];
-                document.getElementById("vote2count").innerHTML = result[1];
 				vote2count = result[1];
-            })
+            })	
+        }
+
+		function getWinner(){
+            const provider = new ethers.providers.Web3Provider(window.ethereum)
+
+            contract = new ethers.Contract(contractAddress, abi, provider);
+            
+            var winnerval = contract.winnerName();
+
+            winnerval.then(function(result){
+                document.getElementById("winner").innerHTML = result;
+            });
+
+			graph();
+        }
+
+		function getChairPerson(){
+            const provider = new ethers.providers.Web3Provider(window.ethereum)
+
+            contract = new ethers.Contract(contractAddress, abi, provider);
+            
+            var chairpersonval = contract.chairperson();
+
+            chairpersonval.then(function(result){
+                document.getElementById("chairperson").innerHTML = result;
+            });
         }
 
         function vote(){
-            abi = [
-	{
-		"inputs": [
-			{
-				"internalType": "string[]",
-				"name": "proposalNames",
-				"type": "string[]"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "constructor"
-	},
-	{
-		"inputs": [],
-		"name": "chairperson",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			}
-		],
-		"name": "delegate",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "voter",
-				"type": "address"
-			}
-		],
-		"name": "giveRightToVote",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "proposals",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "name",
-				"type": "string"
-			},
-			{
-				"internalType": "uint256",
-				"name": "voteCount",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "proposal",
-				"type": "uint256"
-			}
-		],
-		"name": "vote",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"name": "voters",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "weight",
-				"type": "uint256"
-			},
-			{
-				"internalType": "bool",
-				"name": "voted",
-				"type": "bool"
-			},
-			{
-				"internalType": "address",
-				"name": "delegate",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "vote",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "winnerName",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "winnerName_",
-				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "winningProposal",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "winningProposal_",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	}
-]
-            const provider = new ethers.providers.Web3Provider(window.ethereum)
-            // document.getElementById("metamask").innerHTML = "Result Working";
 
+			const provider = new ethers.providers.Web3Provider(window.ethereum)
+            
             signer = provider.getSigner();
 
-            contract = new ethers.Contract("0xf2309528686E1f48b549f2cb4E96C861A23e3404", abi, signer);
+            contract = new ethers.Contract(contractAddress, abi, signer);
 
             var proposalval = document.getElementById("SelectProposal").value;
             var castvote = contract.vote(proposalval);
@@ -374,161 +261,13 @@
         }
 
 		function delegate(){
-            abi = [
-	{
-		"inputs": [
-			{
-				"internalType": "string[]",
-				"name": "proposalNames",
-				"type": "string[]"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "constructor"
-	},
-	{
-		"inputs": [],
-		"name": "chairperson",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			}
-		],
-		"name": "delegate",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "voter",
-				"type": "address"
-			}
-		],
-		"name": "giveRightToVote",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "proposals",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "name",
-				"type": "string"
-			},
-			{
-				"internalType": "uint256",
-				"name": "voteCount",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "proposal",
-				"type": "uint256"
-			}
-		],
-		"name": "vote",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"name": "voters",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "weight",
-				"type": "uint256"
-			},
-			{
-				"internalType": "bool",
-				"name": "voted",
-				"type": "bool"
-			},
-			{
-				"internalType": "address",
-				"name": "delegate",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "vote",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "winnerName",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "winnerName_",
-				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "winningProposal",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "winningProposal_",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	}
-]
-            const provider = new ethers.providers.Web3Provider(window.ethereum);
+			
+			const provider = new ethers.providers.Web3Provider(window.ethereum);
             // document.getElementById("metamask").innerHTML = "Result Working";
 
             signer = provider.getSigner();
 
-            contract = new ethers.Contract("0xf2309528686E1f48b549f2cb4E96C861A23e3404", abi, signer);
+            contract = new ethers.Contract(contractAddress, abi, signer);
 
             var addressval = document.getElementById("TextDelegate").value;
             var delegatevote = contract.delegate(addressval);
@@ -538,24 +277,79 @@
             });
         }
 
+		function giveRights(){
+			
+			const provider = new ethers.providers.Web3Provider(window.ethereum);
+            // document.getElementById("metamask").innerHTML = "Result Working";
+
+            signer = provider.getSigner();
+
+            contract = new ethers.Contract(contractAddress, abi, signer);
+
+            var addressval = document.getElementById("TextNewDelegate").value;
+            var newdelegateval = contract.giveRightToVote(addressval);
+
+            newdelegateval.then(function(transaction){
+                document.getElementById("metamask").innerHTML = transaction;
+            });
+        }
+		
+		async function votingStatus(){
+			
+			const provider = new ethers.providers.Web3Provider(window.ethereum);			
+            signer = provider.getSigner();
+
+            contract = new ethers.Contract(contractAddress, abi, signer);
+
+			const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+			const account = accounts[0];
+
+			console.log(account)
+
+            var voterval = contract.voters(account);
+
+            voterval.then(function(result){
+
+				// Voting Power
+				var votingWeight = "You have no rights to vote!";
+				if (Number(result[0])>0){
+					votingWeight = "Your voting power is: "+result[0];	
+				} 
+
+				var vote = "You have not voted";
+				var voted = "You have not voted";
+				if (result[1]){
+					if (Number(result[0])>0){
+						voted = "You voted already!";
+						vote = "You voted for option #" + (Number(result[3])+1);
+					} else {
+						voted = "You can vote or delegate";
+					}
+				}
+
+				if (!result[1] && Number(result[0])>0){
+					enableVoting();
+				} else {
+					disableVoting();
+				}
+
+                document.getElementById("voterWeightValue").innerHTML = votingWeight;
+				document.getElementById("voterVotedValue").innerHTML = voted;
+				document.getElementById("voterDelegateValue").innerHTML = result[2];
+				document.getElementById("voterVoteValue").innerHTML = vote;
+            });
+        }
+
 		function graph(){
-			var TESTER = document.getElementById('tester');
-			// Plotly.newPlot( TESTER, [{
-			// x: [1, 2, 3, 4, 5],
-			// y: [1, 2, 4, 8, 16] }], {
-			// margin: { t: 0 } } );
+			var TESTER = document.getElementById('barchart');
 
 			var data = [
 			{
-				x: ['proposal 1', 'Proposal 2', 'Proposal 3'],
+				x: ['Proposal 1', 'Proposal 2', 'Proposal 3'],
 				y: [Number(vote0count), Number(vote1count), Number(vote2count)],
 				type: 'bar'
 			}
 			];
-
-			// console.log('vote0count:', Number(vote0count));
-			// console.log('vote1count:', Number(vote1count));
-			// console.log('vote2count:', Number(vote2count));
 
 			Plotly.newPlot(TESTER, data);
 		}
@@ -570,48 +364,102 @@
 
   <!-- <div id="nav" data-include=""></div> -->
   <main role="main" class="container-fluid">
-    <h1>Voting DAPP - DJM. This is the best project ever</h1>
+    <h1>Voting DAPP - DJM</h1>
 
-    <div class="table-responsive">
+	<!-- Voting Options -->
+	<hr>
+	<h2>Voting options</h2>
+	<div class="table-responsive">
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>Proposal</th>
-                    <th>Votes</th>
+					<th>Proposal</th>
+                    <th>Proposal Name</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
+					<td id="vote0count">Proposal #1</td>
                     <td id="proposal0name"></td>
-                    <td id="vote0count"></td>
                 </tr>
                 <tr>
+					<td id="vote1count">Proposal #2</td>
                     <td id="proposal1name"></td>
-                    <td id="vote1count"></td>
+
                 </tr>
                 <tr>
+					<td id="vote2count">Proposal #3</td>
                     <td id="proposal2name"></td>
-                    <td id="vote2count"></td>
                 </tr>
             </tbody>
         </table>
     </div>
 
-    <select id="SelectProposal">
+
+	<!-- Voting status -->
+	<hr>
+	<h2>Current voting status</h2>
+	<br>
+	Can you vote? <input id="CheckStatus" type="button" onclick="votingStatus()" class="btn btn-info" value="Check voting status"/>
+	<br>
+	<div class="table-responsive">
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <td id="voterWeight">Voting weight</td>
+                    <td id="voterWeightValue"></td>
+                </tr>
+                <tr>
+                    <td id="voterVoted">Already voted?</td>
+                    <td id="voterVotedValue"></td>
+                </tr>
+                <tr>
+                    <td id="voterDelegate">Delegate</td>
+                    <td id="voterDelegateValue"></td>
+                </tr>
+				<tr>
+                    <td id="voterVote">Vote</td>
+                    <td id="voterVoteValue"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+	<!-- Voting -->
+	<hr>
+	<h2>Vote or delegate</h2>
+	<select id="SelectProposal">
         <option value="-1">.. Select a proposal</option>
         <option value="0">Proposal 1</option>
         <option value="1">Proposal 2</option>
         <option value="2">Proposal 3</option>
 
     </select>
-
-    <input id="ButtonVote" type="button" onclick="vote()" class="btn btn-info" value="Vote"/>
-    You can also delegate to someone else
+	<input id="ButtonVote" type="button" onclick="vote()" class="btn btn-info" value="Vote"/>
+	<br>
+	<!-- Delegating -->
     <input id="TextDelegate" type="text"/>
     <input id="ButtonDelegate" type="button" onclick="delegate()" class="btn btn-info" value="Delegate"/>
-	<input id="Plot" type="button" onclick="graph()" class="btn btn-info" value="Plot"/>
-    
-	<div id="tester" style="width:600px;height:250px;"></div>
+
+	
+	<!-- Results -->
+	<hr>
+	<h2>Current Results</h2>
+	<input id="Plot" type="button" onclick="getWinner()" class="btn btn-info" value="Show results!"/>
+	
+	<div id="barchart" style="width:500px;height:250px;"></div>
+	<p>The winner is:</p>
+	<div id="winner"></div>
+
+	<!-- Give Rights to Vote -->
+	<hr>
+	<h2>Give rights to vote</h2>
+	<p>Only the chairman is allowed to nominate new delegates</p>
+	<input id="ButtonChairPerson" type="button" onclick="getChairPerson()" class="btn btn-info" value="Show chair person"/>
+	<div id="chairperson"></div>
+	<br>
+	<input id="TextNewDelegate" type="text"/>
+    <input id="ButtonNewDelegate" type="button" onclick="giveRights()" class="btn btn-info" value="Give rights to vote"/>
 
   </main>
 
