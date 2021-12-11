@@ -6,19 +6,19 @@
 
 Please see the [DJM_dApps](https://shawry6.github.io/DJM_dApps/) process below:  
 
-**## 1. Propose an Idea** 
+##**1. Propose an Idea** 
 * Delegates offer new Proposal/s for their Organisation
 
-**## 2. Vote for an Idea**
+##**2. Vote for an Idea**
 * Delegates vote for a Proposal
 
-**## 3. Request for Tenders to fulfill the Winning Idea**
+##**3. Request for Tenders to fulfill the Winning Idea**
 * Request for Tender is offered by Chairperson/s to Suppliers to bid on the winning Proposal  
 
-**## 4. Vote for a Tender**
+##**4. Vote for a Tender**
 * Chairperson/s vote for a Tender to fulfill the idea
 
-**## 5. Contract the Winning Tender**
+##**5. Contract the Winning Tender**
 * Chairperson/s engage the winning Supplier to commence completion of the idea 
 
 Checkout our gSlides presentation [here](https://docs.google.com/presentation/d/1rih1TbxnlrEZVL_i3aZtN38MSt9jj_9ODyq0QfhbHfI/edit?usp=sharing). You will need to request permission from the owners via this link to see it.
