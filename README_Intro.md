@@ -20,13 +20,21 @@ Concur is written in the Solidity programming language and tested on the Ropsten
 
 To compile and deploy Concur we used and tested with Remix and Metamask. We took data from our Bot and we provided the end user with a UI via IPFS. 
 
-    In this section, you should include detailed installation notes containing code blocks and screenshots.
+Please see code notes in the Solidity Contracts.
+
+Note that the Voting System requires an array of strings for deployment.
+
+![handy](images/deploying_contract.png)
 
 ---
 
 ## Examples
 
-    This section should include screenshots, code blocks, or animations showing how your project works.
+Checkout our YouTube Videos.
+
+[Demo 1 - Short Demo (5 min) of the Voting System](https://www.youtube.com/watch?v=cDsFlOUtCto)
+
+[Demo 2 - Longer Demo (10 min) of the Voting System](https://www.youtube.com/watch?v=2Pioc1-ETyg)
 
 ---
 
@@ -35,6 +43,14 @@ To compile and deploy Concur we used and tested with Remix and Metamask. We took
     This section should include screenshots, code blocks, or animations explaining how to use your project.
 
 ---
+
+---
+
+## Useful Resources
+
+[Ether.js](https://docs.ethers.io/v5/)
+[Plotly](https://plotly.com/javascript/getting-started/#start-plotting)
+
 
 ## Contributors
 

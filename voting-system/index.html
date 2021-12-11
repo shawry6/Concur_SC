@@ -8,7 +8,7 @@
   <meta name="author" content="">
   <link rel="icon" href="https://getbootstrap.com/docs/4.0/assets/img/favicons/favicon.ico">
 
-  <title>Voting</title>
+  <title>Voting Dapp</title>
 
   <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/starter-template/">
   <link href="./css/bootstrap.min.css" rel="stylesheet">
@@ -28,7 +28,7 @@
 		let vote1count;
 		let vote2count;
 
-		const contractAddress = "0xf2309528686E1f48b549f2cb4E96C861A23e3404";
+		const contractAddress = "0xE84cBB175B9FD203304feB1BeA27a32A264f9f36";
 		const abi = [
 	{
 		"inputs": [
@@ -179,6 +179,7 @@
 	}
 ]
 
+
 		function initInterface(){
 			disableVoting();
 		}
@@ -229,6 +230,8 @@
                 document.getElementById("winner").innerHTML = result;
             });
 
+
+			getvotes()
 			graph();
         }
 
@@ -364,40 +367,86 @@
 
   <!-- <div id="nav" data-include=""></div> -->
   <main role="main" class="container-fluid">
-    <h1>Voting DAPP - DJM</h1>
+
+	<table style="width:100%">
+		<tbody >
+			<tr>
+				<td><img src="../images/Header.png"></td>
+				<td style="text-align:center"><h1>Voting System</h1></td>	
+			</tr>
+		</tbody>
+	</table>
+
+	<br>
+	<!-- Contract Explanation -->
+	<h5>Voting Contract - 0xE84cBB175B9FD203304feB1BeA27a32A264f9f36</h5>
+
+	<ul>
+		<li> Only <b>specific delegates </b>can participate in this voting contest</li>
+		<li> This voting system ensures <b>transparency</b> whereby a chairperson assigns voting rights to individuals through account addresses </li>
+		<li> This contracts represents a <b>generic alternative</b> to vote for different candidates, proposals, contracts... etc. </li>
+		<li> Each participant is allowed to participate <b>only once</b></li>
+		<li> Each participant may have different voting power. In a normal contest, all individuals are equal</li>
+	</ul>
+
+	<h5>Chairman and delegates</h5>
+	
+	<ul>
+		<li><b>Chairman</b> is allowed to vote and nominate new delegates</li>
+		<li><b>Delegates</b> are allowed to vote or nominate someone else to vote in its behalf</li>
+	</ul>
+	
+	<h5>Process</h5>
+	
+	<ol>
+		<li><a href="#voting-options">Explore the voting options</a></li>
+		<li><a href="#voting-status">Check your voting status</a></li>
+		<li><a href="#voting-vote">If you are allowed. Vote of delegate</a></li>
+		<li><a href="#voting-results">Know the results</a></li>
+		<li><a href="#voting-new-delegate">Nominate new delegates.(<b>Chairman only</b>) </a></li>
+	</ol>
+
 
 	<!-- Voting Options -->
+	<a name="voting-options"></a>
 	<hr>
 	<h2>Voting options</h2>
+
+	
 	<div class="table-responsive">
         <table class="table table-bordered">
             <thead>
                 <tr>
 					<th>Proposal</th>
                     <th>Proposal Name</th>
+					<th>Image</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
 					<td id="vote0count">Proposal #1</td>
                     <td id="proposal0name"></td>
+					<td id="proposal0image" style="text-align:center"><img src="../images/2_airport.jpg"  width="100" height="100"></td>
                 </tr>
                 <tr>
 					<td id="vote1count">Proposal #2</td>
                     <td id="proposal1name"></td>
-
+					<td id="proposal0image" style="text-align:center"><img src="../images/3_pool.jpg"  width="100" height="100"></td>
                 </tr>
                 <tr>
 					<td id="vote2count">Proposal #3</td>
                     <td id="proposal2name"></td>
+					<td id="proposal0image" style="text-align:center"><img src="../images/4_waterpark.jpg"  width="100" height="100"></td>
                 </tr>
             </tbody>
         </table>
     </div>
 
 
+	
 	<!-- Voting status -->
 	<hr>
+	<a name="voting-status"></a>
 	<h2>Current voting status</h2>
 	<br>
 	Can you vote? <input id="CheckStatus" type="button" onclick="votingStatus()" class="btn btn-info" value="Check voting status"/>
@@ -427,9 +476,10 @@
 
 	<!-- Voting -->
 	<hr>
+	<a name="voting-vote"></a>
 	<h2>Vote or delegate</h2>
 	<select id="SelectProposal">
-        <option value="-1">.. Select a proposal</option>
+        <option value="-1">Select a proposal</option>
         <option value="0">Proposal 1</option>
         <option value="1">Proposal 2</option>
         <option value="2">Proposal 3</option>
@@ -438,12 +488,13 @@
 	<input id="ButtonVote" type="button" onclick="vote()" class="btn btn-info" value="Vote"/>
 	<br>
 	<!-- Delegating -->
-    <input id="TextDelegate" type="text"/>
+    <input id="TextDelegate" size="50" type="text"/>
     <input id="ButtonDelegate" type="button" onclick="delegate()" class="btn btn-info" value="Delegate"/>
 
 	
 	<!-- Results -->
 	<hr>
+	<a name="voting-results"></a>
 	<h2>Current Results</h2>
 	<input id="Plot" type="button" onclick="getWinner()" class="btn btn-info" value="Show results!"/>
 	
@@ -453,12 +504,14 @@
 
 	<!-- Give Rights to Vote -->
 	<hr>
+	<a name="voting-new-delegate"></a>
 	<h2>Give rights to vote</h2>
 	<p>Only the chairman is allowed to nominate new delegates</p>
-	<input id="ButtonChairPerson" type="button" onclick="getChairPerson()" class="btn btn-info" value="Show chair person"/>
+	<input id="ButtonChairPerson" type="button" onclick="getChairPerson()" class="btn btn-info" value="Show chairman"/> 	
 	<div id="chairperson"></div>
+
 	<br>
-	<input id="TextNewDelegate" type="text"/>
+	<input id="TextNewDelegate" size="50" type="text"/>
     <input id="ButtonNewDelegate" type="button" onclick="giveRights()" class="btn btn-info" value="Give rights to vote"/>
 
   </main>
