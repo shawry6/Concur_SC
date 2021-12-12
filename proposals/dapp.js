@@ -19,7 +19,7 @@ const dApp = {
             <h6>Description</h6>
             <p>${description}</p>
             <img src="https://gateway.pinata.cloud/ipfs/${image.replace("ipfs://", "")}" style="width: 100%" />
-            <p><a href="https://gateway.pinata.cloud/ipfs/${image.replace("ipfs://", "")}">Reference URI</a></p>
+            <p><a href="https://gateway.pinata.cloud/ipfs/${image.replace("ipfs://", "")}" target="_blank">Reference URI</a></p>
             
           </div>
         </li>
