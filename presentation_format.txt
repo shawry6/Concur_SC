@@ -1,0 +1,49 @@
+Presentation format:  
+
+* 	Dave:
+	Welcome intro: Project name, Authors, DJM_dApps homepage and lay explanation. 
+
+* 	Joe:
+	Joe to present "Proposals". Joe to Register the Airport for his example. 
+	Joe to intro Miguel's video explaining how community proposals are voted on. 
+	
+*	Miguel:
+	Dave to Play Miguel's 5min Video. 
+	Dave to roll off of Miguel's voting example of Citizen 3 voting for the Airport from there on...
+
+* 	Dave:
+	Dave to present "Tenders" 
+	Dave to Register the Airport for Tender (may do this while Miguel's video plays if we are tight for time). 
+	Dave to demo TenderMarket bid process and achieve the 3 lowest priced Tenders. 
+	Dave may explain further with a brief view of the TenderMarket & TenderAuction code in Remix (if time). 
+	Dave will explain how Miguel's voting system will then be used to select the winning Tender 
+		just the same as it was before to select the winning idea. 
+	Dave to throw back to Joe to present and explain how the Contract for the winning Tender is encrypted and 
+		written to the blockchain. 
+
+* 	Joe: 
+	Joe to present "Contracts" 
+	Joe to demo the Encrypt/Decrypt functionality for the Airport contract
+	Joe to close the presentation
+
+
+Prep for Presentation:
+
+	Joe:
+*	To Register 3 proposals onto his Proposals page so we can see the images. 
+		Please register the bustop, pool and the themepark. 
+		Please save registering the Airport for the presentation example.
+*	To bring the format of his pages in line with the "Architect" theme - or similar enough to Miguel's. 
+
+
+	Dave:
+* 	DJM_dApps link currently to TenderMarket repo but working code is in my_martian_market repo
+		1. Git Pull both TM and MMM
+		2. Put code from MMM into TM and 
+		3. Check all files for compatibility using Remix (sol files) and VS (md, js, html files)
+		4. Git add ., commit , Push new code to TM repo
+		5. Check TenderMarket GitHub_Pages works
+		6. Format TenderMarket pages using Architect theme
+		7. 
+*	To bring the format of his pages in line with the "Architect" theme - or similar enough to Miguel's. 
+*	Finish the presentation off with formatting inline with DJM_dApps site
