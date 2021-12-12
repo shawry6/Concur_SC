@@ -13,17 +13,25 @@
 
 <body class="grey lighten-3">
 
-  <div class="container" style="text-align: center">
+  <div class="container"> style="text-align: center">
 
-    <h3>MartianMarket</h3>
-    <p>Welcome to the Martian Land Foundation's open marketplace. This market serves to raise funds for the Mars development project
-      by auctioning land to the masses.
+    <table style="width:100%">
+      <tbody >
+        <tr>
+          <td><img src="../images/Header.png"></td>
+          <td style="text-align:center"><h3>Bid for Tender</h3></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- <h3>MartianMarket</h3> -->
+    <p>Select the Tender you would like to Bid on
     </p>
     <div id="dapp-tokens" class="row">
       <div class="card">
         <div class="card-image">
           <img id="dapp-image" src="">
-          <span id="dapp-name" class="card-title">Landmark Name</span>
+          <span id="dapp-name" class="card-title">Tender Name</span>
         </div>
         <div class="card-action">
           <a id="dapp-bid" href="#">Bid</a>
@@ -36,15 +44,15 @@
       <div class="card blue-grey darken-1">
         <div class="card-content white-text">
           <span class="card-title"><input id="dapp-register-name" placeholder="Landmark name..." /></span>
-          <p>Image: <input id="dapp-copyright-image" type="file" /></p>
+          <p>Attach Tender: <input id="dapp-copyright-image" type="file" /></p>
 
-          <p><input id="dapp-pinata-api-key" placeholder="Pinata API Key"/></p>
+          <!-- <p><input id="dapp-pinata-api-key" placeholder="Pinata API Key"/></p>
           <p><input id="dapp-pinata-secret-api-key" placeholder="Pinata Secret API Key" type="password" /></p>
-          <p>Note: Pinata requests are done locally via your browser. Your keys are not shared with any party except Pinata.</p>
-          <br/>
+          <p>Note: Pinata requests are done locally via your browser. Your keys are not shared with any party except Pinata.</p> -->
+          <!-- <br/> -->
         </div>
         <div class="card-action">
-          <a id="dapp-register" href="#" onclick="dApp.registerLand()">Register Land</a>
+          <a id="dapp-register" href="#" onclick="dApp.registerLand()">Register Tender</a>
         </div>
       </div>
     </div>
