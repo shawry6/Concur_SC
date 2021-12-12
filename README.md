@@ -4,7 +4,7 @@
 
 ### [2 - Vote on Proposals](voting-system/index.html)
 
-### [3 - Participate in Tender Process](tenders/frontend/index.html)
+### [3 - Participate in Tender Process](tenders/index.html)
 
 ### [4 - Vote on best 3 Tenders](voting-system/index.html)
 
