@@ -120,11 +120,11 @@ const dApp = {
     // const pinata_api_key = $("#dapp-pinata-api-key").val();
     // const pinata_secret_api_key = $("#dapp-pinata-secret-api-key").val();
 
-    const pinata_api_key = 898c93189b79fee2d1b8;
-    const pinata_secret_api_key = d1157ac853d39e630827cabb1b72951dbebc0058c67e4aa8afbb3aeda454d0b6;
+    const pinata_api_key = "898c93189b79fee2d1b8";
+    const pinata_secret_api_key = "d1157ac853d39e630827cabb1b72951dbebc0058c67e4aa8afbb3aeda454d0b6";
 
     if (!pinata_api_key || !pinata_secret_api_key || !name || !image) {
-      M.toast({ html: "Please fill out then entire form!" });
+      M.toast({ html: "Please fill out the entire form!" });
       return;
     }
 
