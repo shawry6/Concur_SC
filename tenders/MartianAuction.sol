@@ -1,13 +1,10 @@
-pragma solidity >=0.4.22 <0.6.0;
+pragma solidity 0.5.0;
 
 contract MartianAuction {
-    address deployer;
-    address payable public beneficiary;
 
     // Current state of the auction.
-    // address public lowestBidder;
+    address payable public beneficiary;
     address public highestBidder;
-    // uint public lowestBid;
     uint public highestBid;
 
     // Allowed withdrawals of previous bids
@@ -18,7 +15,6 @@ contract MartianAuction {
     bool public ended;
 
     // Events that will be emitted on changes.
-    // event LowestBidDecreased(address bidder, uint amount);
     event HighestBidIncreased(address bidder, uint amount);
     event AuctionEnded(address winner, uint amount);
 
@@ -26,10 +22,6 @@ contract MartianAuction {
     // recognizable by the three slashes.
     // It will be shown when the user is asked to
     // confirm a transaction.
-    // uint[] indexes;
-    mapping(uint => uint) public lowestBids;
-    mapping(uint => address payable) public lowestBidders;
-    uint idx = 1;
 
     /// Create a simple auction with `_biddingTime`
     /// seconds bidding time on behalf of the
@@ -37,7 +29,6 @@ contract MartianAuction {
     constructor(
         address payable _beneficiary
     ) public {
-        deployer = msg.sender; // set as the MartianMarket
         beneficiary = _beneficiary;
     }
 
@@ -45,56 +36,27 @@ contract MartianAuction {
     /// together with this transaction.
     /// The value will only be refunded if the
     /// auction is not won.
-    // function bid(address payable sender) public payable {
-    //     // If the bid is not higher, send the
-    //     // money back.
-    //     require(
-    //         msg.value > lowestBid,
-    //         // msg.value > highestBid,
-    //         "There already is a lower bid."
-    //         // "There already is a higher bid."
-    //     );
+    function bid(address payable sender) public payable {
+        // If the bid is not higher, send the
+        // money back.
+        require(
+            msg.value > highestBid,
+            "There already is a higher bid."
+        );
 
-    //     require(!ended, "auctionEnd has already been called.");
+        require(!ended, "auctionEnd has already been called.");
 
-    //     // if (highestBid != 0) {
-    //     //     // Sending back the money by simply using
-    //     //     // highestBidder.send(highestBid) is a security risk
-    //     //     // because it could execute an untrusted contract.
-    //     //     // It is always safer to let the recipients
-    //     //     // withdraw their money themselves.
-    //     //     pendingReturns[highestBidder] += highestBid;
-    //     // }
-    //     // highestBidder = sender;
-    //     // highestBid = msg.value;
-    //     // emit HighestBidIncreased(sender, msg.value);
-    // }
-    function bid2(address payable sender) public payable {
-        uint max_of_bids;
-        uint idx_of_max_bid;
-
-        if (idx<4){
-            lowestBids[idx] = msg.value;
-            lowestBidders[idx] = sender;
-            idx+=1;
-            // indexes.push(idx);
+        if (highestBid != 0) {
+            // Sending back the money by simply using
+            // highestBidder.send(highestBid) is a security risk
+            // because it could execute an untrusted contract.
+            // It is always safer to let the recipients
+            // withdraw their money themselves.
+            pendingReturns[highestBidder] += highestBid;
         }
-        else{
-            for (uint i = 1; i<4; i++){
-                uint bid = lowestBids[i];
-                if(bid > max_of_bids){
-                    max_of_bids = bid;
-                    idx_of_max_bid = i;
-
-                }
-            }
-
-        if (msg.value < max_of_bids){
-            lowestBids[idx_of_max_bid] = msg.value;
-            lowestBidders[idx_of_max_bid] = sender;
-        }
-        }
-
+        highestBidder = sender;
+        highestBid = msg.value;
+        emit HighestBidIncreased(sender, msg.value);
     }
 
     /// Withdraw a bid that was overbid.
@@ -119,14 +81,6 @@ contract MartianAuction {
         return pendingReturns[sender];
     }
 
-    function lowestBid(uint id) public view returns (uint) {
-        return lowestBids[id];
-    }
-
-    function lowestBidder(uint id) public view returns (address) {
-        return lowestBidders[id];
-    }
-
     /// End the auction and send the highest bid
     /// to the beneficiary.
     function auctionEnd() public {
@@ -145,7 +99,7 @@ contract MartianAuction {
 
         // 1. Conditions
         require(!ended, "auctionEnd has already been called.");
-        require(msg.sender == deployer, "You are not the auction deployer!");
+        require(msg.sender == beneficiary, "You are not the auction beneficiary");
 
         // 2. Effects
         ended = true;
