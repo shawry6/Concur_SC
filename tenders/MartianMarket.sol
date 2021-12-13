@@ -54,20 +54,9 @@ contract MartianMarket is ERC721Full, Ownable {
         return auction.pendingReturn(sender);
     }
 
-    function lowestBid(uint token_id, uint id) public view landRegistered(token_id) returns(uint) {
-        MartianAuction auction = auctions[token_id];
-        return auction.lowestBid(id);
-    }
-
-    
-    function lowestBidder(uint token_id, uint id) public view  returns(address) {
-        MartianAuction auction = auctions[token_id];
-        return auction.lowestBidders(id);
-    }
-
     function bid(uint token_id) public payable landRegistered(token_id) {
         MartianAuction auction = auctions[token_id];
-        auction.bid2.value(msg.value)(msg.sender);
+        auction.bid.value(msg.value)(msg.sender);
     }
 
 }

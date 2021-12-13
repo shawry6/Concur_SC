@@ -1,5 +1,7 @@
 // @TODO: Update this address to match your deployed MartianMarket contract!
-const contractAddress = "0x7a377fAd8c7dB341e662c93A79d0B0319DD3DaE8";
+// const contractAddress = "0xf52Ea2Fc948c1e9fAb11C6571ce9f4264Cea0a9B";
+// const contractAddress = "0x0388726c4b0Cc9e85283c6308043552BF15e4a09";
+const contractAddress = "0x8822d5417191B15eA6C6d06EE6182f26E2793B79";
 
 const dApp = {
   ethEnabled: function() {
@@ -115,11 +117,14 @@ const dApp = {
     const name = $("#dapp-register-name").val();
     const image = document.querySelector('input[type="file"]');
 
-    const pinata_api_key = $("#dapp-pinata-api-key").val();
-    const pinata_secret_api_key = $("#dapp-pinata-secret-api-key").val();
+    // const pinata_api_key = $("#dapp-pinata-api-key").val();
+    // const pinata_secret_api_key = $("#dapp-pinata-secret-api-key").val();
+
+    const pinata_api_key = "898c93189b79fee2d1b8";
+    const pinata_secret_api_key = "d1157ac853d39e630827cabb1b72951dbebc0058c67e4aa8afbb3aeda454d0b6";
 
     if (!pinata_api_key || !pinata_secret_api_key || !name || !image) {
-      M.toast({ html: "Please fill out then entire form!" });
+      M.toast({ html: "Please fill out the entire form!" });
       return;
     }
 
