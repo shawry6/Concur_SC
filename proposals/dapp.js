@@ -14,7 +14,7 @@ const dApp = {
   updateUI: function() {
     const renderItem = (copyright_id, reference_uri, icon_class, {name, description, image}) => `
         <li>
-          <div class="collapsible-header"></i>Contract Number ${copyright_id}: ${name}</div>
+          <div class="collapsible-header"></i>Proposal Number ${copyright_id}: ${name}</div>
           <div class="collapsible-body">
             <h6>Description</h6>
             <p>${description}</p>
